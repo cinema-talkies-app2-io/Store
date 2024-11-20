@@ -35,7 +35,7 @@ CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
 #DB_NAME = environ.get("DB_NAME", "clonetechvj")
 
 # Database Information
-DB_URI = environ.get("DB_URI", "mongodb+srv://MadhanBlastz:N0password@cluster0.cgumfin.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = environ.get("DB_URI", "mongodb+srv://Madhan:N0password@cluster0.y0vtta6.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = environ.get("DB_NAME", "techvjbotz")
 
 # Auto Delete Information
