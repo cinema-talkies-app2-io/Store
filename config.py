@@ -35,7 +35,7 @@ CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
 #DB_NAME = environ.get("DB_NAME", "clonetechvj")
 
 # Database Information
-DB_URI = environ.get("DB_URI", "mongodb+srv://Madhan:N0password@cluster0.y0vtta6.mongodb.net/?retryWrites=true&w=majority")
+DB_URI = environ.get("DB_URI", "mongodb+srv://cinematalkiesapp3io:N00password@cluster0.ibev3.mongodb.net/?retryWrites=true&w=majority")
 DB_NAME = environ.get("DB_NAME", "techvjbotz")
 
 # Auto Delete Information
@@ -80,7 +80,7 @@ if 'DYNO' in environ:
     ON_HEROKU = True
 else:
     ON_HEROKU = False
-URL = environ.get("URL", "https://tasteless-nerty-85533273.koyeb.app/")
+URL = environ.get("URL", "https://deafening-loralee-cinematalkies-26d0d0bb.koyeb.app/")
 
 
 # Don't Remove Credit Tg - @VJ_Botz
