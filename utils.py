@@ -1,5 +1,5 @@
 import logging, asyncio, os, re, random, pytz, aiohttp, requests, string, json, http.client
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from config import SHORTLINK_API, SHORTLINK_URL
 from shortzy import Shortzy
 
@@ -24,10 +24,6 @@ async def get_verify_shorted_link(link):
             logger.error(e)
             return link
     else:
-  #      response = requests.get(f"https://{SHORTLINK_URL}/api?api={SHORTLINK_API}&url={link}")
- #       data = response.json()
-  #      if data["status"] == "success" or rget.status_code == 200:
-   #         return data["shortenedUrl"]
         shortzy = Shortzy(api_key=SHORTLINK_API, base_site=SHORTLINK_URL)
         link = await shortzy.convert(link)
         return link
@@ -38,12 +34,8 @@ async def check_token(bot, userid, token):
         TKN = TOKENS[user.id]
         if token in TKN.keys():
             is_used = TKN[token]
-            if is_used == True:
-                return False
-            else:
-                return True
-    else:
-        return False
+            return not is_used
+    return False
 
 async def get_token(bot, userid, link):
     user = await bot.get_users(userid)
@@ -57,20 +49,15 @@ async def verify_user(bot, userid, token):
     user = await bot.get_users(userid)
     TOKENS[user.id] = {token: True}
     tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
-    VERIFIED[user.id] = str(today)
+    expiry_time = datetime.now(tz) + timedelta(hours=1)
+    VERIFIED[user.id] = expiry_time.strftime('%Y-%m-%d %H:%M:%S')
 
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
     tz = pytz.timezone('Asia/Kolkata')
-    today = date.today()
+    now = datetime.now(tz)
     if user.id in VERIFIED.keys():
         EXP = VERIFIED[user.id]
-        years, month, day = EXP.split('-')
-        comp = date(int(years), int(month), int(day))
-        if comp<today:
-            return False
-        else:
-            return True
-    else:
-        return False
+        exp_time = datetime.strptime(EXP, '%Y-%m-%d %H:%M:%S')
+        return exp_time >= now
+    return False
