@@ -1,5 +1,5 @@
 import logging, asyncio, os, re, random, pytz, aiohttp, requests, string, json, http.client
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from config import SHORTLINK_API, SHORTLINK_URL
 from shortzy import Shortzy
 
@@ -61,44 +61,16 @@ async def verify_user(bot, userid, token):
     VERIFIED[user.id] = str(today)
 
 async def check_verification(bot, userid):
-    try:
-        user = await bot.get_users(userid)
-        if not await db.is_user_exist(user.id):
-            await db.add_user(user.id, user.first_name)
-            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
-        
-        tz = pytz.timezone('Asia/Kolkata')
-        today = date.today()
-
-        if user.id in VERIFIED.keys():
-            EXP = VERIFIED[user.id]
-            years, month, day = map(int, EXP.split('-'))
-            comp = date(years, month, day)
-            comp_with_extra_time = comp + timedelta(days=1)  # Add 1 day
-            
-            if comp_with_extra_time >= today:
-                remaining_time = comp_with_extra_time - today
-                days_remaining = remaining_time.days
-                hours_remaining = remaining_time.seconds // 3600
-                minutes_remaining = (remaining_time.seconds % 3600) // 60
-                seconds_remaining = remaining_time.seconds % 60
-
-                remaining_time_str = (f"{days_remaining} days, "
-                                      f"{hours_remaining} hours, "
-                                      f"{minutes_remaining} minutes, "
-                                      f"{seconds_remaining} seconds remaining")
-                
-                # You can send this information to the user or log it
-                #await bot.send_message(user.id, f"Your verification is valid for {remaining_time_str}.")
-                
-                return True
-            else:
-              #  await bot.send_message(user.id, "Your verification has expired.")
-                return False
-        else:
+    user = await bot.get_users(userid)
+    tz = pytz.timezone('Asia/Kolkata')
+    today = date.today()
+    if user.id in VERIFIED.keys():
+        EXP = VERIFIED[user.id]
+        years, month, day = EXP.split('-')
+        comp = date(int(years), int(month), int(day))
+        if comp<today:
             return False
-
-    except Exception as e:
-        # Handle exceptions (e.g., log them)
-        print(f"An error occurred: {e}")
+        else:
+            return True
+    else:
         return False
