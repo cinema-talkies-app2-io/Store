@@ -24,7 +24,7 @@ BOT_TOKEN = environ.get("BOT_TOKEN", "7191400469:AAExhnO9O3rQJ3B5fBqAHTJcE_j2yYF
 
 PICS = (environ.get('PICS', 'https://graph.org/file/9f59dd688fb3f7bc6c2f9.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '2021408974').split()]
-BOT_USERNAME = environ.get("BOT_USERNAME", "Data_ZBot") # without @
+BOT_USERNAME = environ.get("BOT_USERNAME", "Data_Store_iBot") # without @
 PORT = environ.get("PORT", "8080")
 
 # Clone Info :-
@@ -36,7 +36,7 @@ CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
 
 # Database Information
 DB_URI = environ.get("DB_URI", "mongodb+srv://cinematalkiesapp3io:N00password@cluster0.ibev3.mongodb.net/?retryWrites=true&w=majority")
-DB_NAME = environ.get("DB_NAME", "techvjbotz")
+DB_NAME = environ.get("DB_NAME", "Cluster0")
 
 # Auto Delete Information
 AUTO_DELETE_MODE = bool(environ.get('AUTO_DELETE_MODE', False)) # Set True or False
@@ -61,7 +61,7 @@ VERIFY_MODE = bool(environ.get('VERIFY_MODE', True)) # Set True or False
 # If Verify Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
 SHORTLINK_URL = environ.get("SHORTLINK_URL", "gplinks.com") # shortlink domain without https://
 SHORTLINK_API = environ.get("SHORTLINK_API", "e5bf7301b4ad442d45481de99fd656a182ec6507") # shortlink api
-VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "aaa") # how to open link 
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/Data_Store_iBot?start=ZmlsZV9CQUFEQlFBRDNSTUFBcXVmd1ZmS3g1WUhwOXF3SVJZRQ") # how to open link 
 
 # Website Info:
 WEBSITE_URL_MODE = bool(environ.get('WEBSITE_URL_MODE', False)) # Set True or False
