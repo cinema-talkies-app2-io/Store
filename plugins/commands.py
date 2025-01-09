@@ -224,10 +224,10 @@ async def start(client, message):
             btn = [[
                 InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start="))
             ],[
-                InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
+                InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
             ]]
             await message.reply_text(
-                text="<b>You are not verified !\nKindly verify to continue !</b>",
+                text="<b>Your token has expired !\nKindly verify to continue !\nToken timeout : 1week</b>",
                 protect_content=True,
                 reply_markup=InlineKeyboardMarkup(btn)
             )
@@ -252,7 +252,7 @@ async def start(client, message):
             await msg.edit_caption(f_caption)
             if STREAM_MODE == True:
                 g = await msg.reply_text(
-                    text=f"**•• ʏᴏᴜ ᴄᴀɴ ɢᴇɴᴇʀᴀᴛᴇ ᴏɴʟɪɴᴇ sᴛʀᴇᴀᴍ ʟɪɴᴋ ᴏғ ʏᴏᴜʀ ғɪʟᴇ ᴀɴᴅ ᴀʟsᴏ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ ғᴏʀ ʏᴏᴜʀ ғɪʟᴇ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ 👇**",
+                    text=f"**•• ʏᴏᴜ ᴄᴀɴ ɢᴇɴᴇʀᴀᴛᴇ ᴏɴʟɪɴᴇ sᴛʀᴇᴀᴍ ʟɪɴᴋ ᴀɴᴅ ᴀʟsᴏ ғᴀsᴛ ᴅᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ ғᴏʀ ʏᴏᴜʀ ғɪʟᴇ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ 👇**",
                     quote=True,
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup(
@@ -297,10 +297,10 @@ async def start(client, message):
         btn = [[
             InlineKeyboardButton("Verify", url=await get_token(client, message.from_user.id, f"https://telegram.me/{username}?start="))
         ],[
-            InlineKeyboardButton("How To Open Link & Verify", url=VERIFY_TUTORIAL)
+            InlineKeyboardButton("How To Verify", url=VERIFY_TUTORIAL)
         ]]
         await message.reply_text(
-            text="<b>You are not verified !\nKindly verify to continue !</b>",
+            text="<b>Your token has expired !\nKindly verify to continue !\nToken timeout : 1week</b>",
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
